@@ -7,9 +7,12 @@
 # Module to install the Microsoft .NET framework on windows
 #
 # === Requirements/Dependencies
-#
-# Currently reequires the puppetlabs/stdlib module on the Puppet Forge in
-# order to validate much of the the provided configuration.
+# 
+# lwf/remote_file
+# https://github.com/lwf/puppet-remote_file
+# 
+# puppetlabs/powershell
+# https://github.com/puppetlabs/puppetlabs-powershell
 #
 # === Parameters
 #
