@@ -31,7 +31,7 @@
 #    }
 #
 define dotnet(
-  Enum['3.5', '4.0', '4.5', '4.5.1', '4.5.2', '4.6', '4.6.1'. '4.6.2', '4.7']
+  Enum['3.5', '4.0', '4.5', '4.5.1', '4.5.2', '4.6', '4.6.1', '4.6.2', '4.7']
   $version,
 
   Enum['present', 'absent']
@@ -46,9 +46,6 @@ define dotnet(
   if $::os['family'] != 'windows' {
     fail("dotnet ${version} is not supported on ${::os['family']}")
   }
-
-  # Windows Server 2016
-  # https://en.wikipedia.org/wiki/Windows_Server_2016#Releases  
 
   $windows_version = $::os['release']['full']
 
@@ -97,27 +94,27 @@ define dotnet(
     }
     '4.6': {
       case $windows_version {
-        /^2003/, /^2008/, /^2012/, 'XP', 'Vista', '7', '8', '8.1', '10.0.14393':  { $type = 'package' }
-        default:                                                                  { $type = 'err'     }
+        /^2003/, /^2008/, /^2012/, 'XP', 'Vista', '7', '8', '8.1', '2016':  { $type = 'package' }
+        default:                                                            { $type = 'err'     }
       }
     }    
     '4.6.1': {
       case $windows_version {
-        '10.0.14393'                                               { $type = 'builtin' }
+        '2016':                                                    { $type = 'builtin' }
         /^2003/, /^2008/, /^2012/, 'XP', 'Vista', '7', '8', '8.1': { $type = 'package' }
         default:                                                   { $type = 'err'     }
       }
     }
     '4.6.2': {
       case $windows_version {
-        /^2003/, /^2008/, /^2012/, 'XP', 'Vista', '7', '8', '8.1', '10.0.14393':  { $type = 'package' }
-        default:                                                                  { $type = 'err'     }
+        /^2003/, /^2008/, /^2012/, 'XP', 'Vista', '7', '8', '8.1', '2016': { $type = 'package' }
+        default:                                                           { $type = 'err'     }
       }
     }
     '4.7': {
       case $windows_version {
-        /^2003/, /^2008/, /^2012/, 'XP', 'Vista', '7', '8', '8.1', '10.0.14393':  { $type = 'package' }
-        default:                                                                  { $type = 'err'     }
+        /^2003/, /^2008/, /^2012/, 'XP', 'Vista', '7', '8', '8.1', '2016': { $type = 'package' }
+        default:                                                           { $type = 'err'     }
       }
     }            
     default: { $type = 'err' }
