@@ -44,12 +44,12 @@ define dotnet(
 
   $windows_version = $::os['release']['full']
 
-  if !['2012', '2012 R2', '2016'].include? $windows_version {
+  if ! ($windows_version in ['2012', '2012 R2', '2016']) {
     fail("dotnet ${version} is not supported on windows ${windows_version}")
   }
 
   dotnet::install::package { "dotnet-package-${version}":
-    version     => $version,
-    package_dir => $package_dir,
+    version         => $version,
+    package_dir     => $package_dir,
   }
 }

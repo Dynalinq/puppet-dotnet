@@ -1,14 +1,14 @@
 #
 define dotnet::install::package(
-  $version     = '',
-  $package_dir = ''
+  $version         = '',
+  $package_dir     = ''
 ) {
 
   include dotnet::params
 
   $url       = $dotnet::params::version[$version]['url']
   $exe       = $dotnet::params::version[$version]['exe']
-  $releases  = $dotnet::params::version[$version]['releases']
+  $release   = $dotnet::params::version[$version]['release']
 
   if "x${package_dir}x" == 'xx' {
     $source_file = "C:/Windows/Temp/${exe}"
@@ -19,8 +19,6 @@ define dotnet::install::package(
   } else {
     $source_file = "${package_dir}/${exe}"
   }
-
-  $release = $releases.max
 
   exec { "install-dotnet-${version}":
     command   => "& ${$source_file} /q /norestart",
