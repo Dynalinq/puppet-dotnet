@@ -17,34 +17,24 @@
 
 Puppet module for installing and managing [Microsoft .NET framework](http://www.microsoft.com/net).
 
-[![Build Status](https://travis-ci.org/voxpupuli/puppet-dotnet.svg?branch=master)](https://travis-ci.org/voxpupuli/puppet-dotnet)
-[![Puppet Forge](http://img.shields.io/puppetforge/v/puppet/dotnet.svg)](https://forge.puppet.com/puppet/dotnet)
-[![Puppet Forge Downloads](http://img.shields.io/puppetforge/dt/puppet/dotner.svg)](https://forge.puppetlabs.com/puppet/dotnet)
-
 ## Module Description
 
-This module installs and configures the Microsoft .NET framework on Windows systems. It support side-by-side installs where appropriate.
+This module installs and configures the Microsoft .NET framework 4.X on Windows systems. It ensures that the specified version or higher is installed.
 
 ## Setup
 
 ### What dotnet affects
 
-* Installs the .net framework package or the windows server role.
+* Installs the .net framework package.
 
 ### Beginning with dotnet
-
-Installing the .net 3.5 server role on windows server:
-
-```puppet
-  dotnet { 'dotnet35': version => '3.5' }
-```
 
 Installing .net 4.5:
 
 ```puppet
   dotnet { 'dotnet45':
     version => '4.5'
-    deployment_root => 'Z:\packages'
+    package_dir => 'Z:\packages'
   }
 ```
 
@@ -54,10 +44,6 @@ Installing .net 4.5:
 
 #### Defined Type: `dotnet`
 The dotnet module primary definition, `dotnet` install and configures the .net framework packages/roles
-
-**Parameters within `dotnet`:**
-##### `ensure`
-Ensures the state of .net on the system. Present or Absent.
 
 ##### `version`
 The version of .net that you want to be managed by this definition.
@@ -75,19 +61,13 @@ media, such as `D:\sources\sxs`.
 * [`dotnet`](#define_dotnet): Guides the basic management of the .net framework on the system.
 
 ### Private Definitions
-* [`dotnet::install::feature`](#define-install_feature): Installs dotnet as windows feature (.net 3.5)
 * [`dotnet::install::package`](#define-install_package): Installs dotnet from a downloaded package.
 
 ## Limitations
 
 This module is tested on the following platforms:
 
-* Windows 2008 R2
+* Windows Server 2016
 
 It is tested with the OSS version of Puppet only.
 
-## Development
-
-### Contributing
-
-Please read CONTRIBUTING.md for full details on contributing to this project.
