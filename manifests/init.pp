@@ -31,7 +31,7 @@
 #    }
 #
 define dotnet(
-  Enum['4.5', '4.5.1', '4.5.2', '4.6', '4.6.1', '4.6.2', '4.7']
+  Enum['4.5', '4.5.1', '4.5.2', '4.6', '4.6.1', '4.6.2', '4.7', '4.7.1']
   $version,
 
   Variant[String, Undef]
@@ -41,6 +41,9 @@ define dotnet(
   if $::os['family'] != 'windows' {
     fail("dotnet ${version} is not supported on ${::os['family']}")
   }
+
+  notify { "${dotnet_release}": } 
+  
 
   $windows_version = $::os['release']['full']
 
