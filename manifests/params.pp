@@ -47,6 +47,11 @@ class dotnet::params {
       'exe'       => 'NDP47-KB3186497-x86-x64-AllOS-ENU.exe',
       'release'   => 460805
     },    
+    '4.7.1' => {
+      'url'       => 'https://download.microsoft.com/download/9/E/6/9E63300C-0941-4B45-A0EC-0008F96DD480/NDP471-KB4033342-x86-x64-AllOS-ENU.exe',
+      'exe'       => 'NDP471-KB4033342-x86-x64-AllOS-ENU.exe',
+      'release'   => 461310
+    },        
   }
 
 }
