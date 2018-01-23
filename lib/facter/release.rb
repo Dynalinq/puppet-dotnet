@@ -7,4 +7,4 @@ Facter.add('dotnet_release') do
     end
     value
   end
- end  
+end        
