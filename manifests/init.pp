@@ -42,9 +42,8 @@ define dotnet(
     fail("dotnet ${version} is not supported on ${::os['family']}")
   }
 
-  notify { "${dotnet_release}": } 
+  notify { "dotnet release found ${dotnet_release}": } 
   
-
   $windows_version = $::os['release']['full']
 
   if ! ($windows_version in ['2012', '2012 R2', '2016']) {
